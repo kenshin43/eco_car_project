@@ -9,12 +9,21 @@ public class MemberDTO {
 	
 	public MemberDTO() {}
 	public MemberDTO(String id, String pwd, String salt, String email, int isAdmin) {
-		super();
 		this.id = id;
 		this.pwd = pwd;
 		this.salt = salt;
 		this.email = email;
 		this.isAdmin = isAdmin;
+	}
+	public MemberDTO(String id, String pwd, String email, int isAdmin) {
+		this.id = id;
+		this.pwd = pwd;
+		this.email = email;
+		this.isAdmin = isAdmin;
+	}
+	public MemberDTO(String id, String pwd) {
+		this.id = id;
+		this.pwd = pwd;
 	}
 
 	public String getId() {
