@@ -7,11 +7,11 @@
 	<div class="w3-row-padding w3-content" style="max-width: 1400px">
 		<div class="w3-twothird">
 			<img src="greencar.jpg" style="width: 60%">
-			<h4 id="title0" style="color : white;"></h4>
+			<h4 id="title0"></h4>
 			<div class="w3-justify">
 				<p id="des0"></p>
 			<img src="i.jpg" style="width: 60%">
-			<h4 id="title1" style="color : white;"></h4>
+			<h4 id="title1"></h4>
 			<div class="w3-justify">
 				<p id="des1"></p>
 			</div>

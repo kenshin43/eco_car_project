@@ -80,24 +80,9 @@
 	<%@include file="index/header.jsp"%>
     <!-- About -->
     <%@include file="index/map.jsp"%>
-    <!-- Callout -->
-    <aside class="callout">
-      <div class="text-vertical-center">
-        <h1>Vertically Centered Text</h1>
-      </div>
-    </aside>
 
 	<!-- Car -->
     <%@include file="index/car.jsp"%>
-
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary text-white">
-      <div class="container text-center">
-        <h3>The buttons below are impossible to resist.</h3>
-        <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-        <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
-      </div>
-    </aside>
 
 	<!-- News -->
     <%@include file="index/news.jsp"%>
