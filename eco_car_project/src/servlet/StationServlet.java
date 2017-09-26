@@ -18,7 +18,7 @@ import dto.StationDTO;
 import net.sf.json.JSONArray;
 
 @WebServlet("/station.do")
-public class StationServlet extends HttpServlet {
+public class StationServlet extends HttpServlet { 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
