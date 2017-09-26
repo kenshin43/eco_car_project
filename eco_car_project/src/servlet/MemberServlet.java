@@ -18,6 +18,7 @@ public class MemberServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String type = request.getParameter("type");
+		System.out.println(type);
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		if(type==null) {
@@ -25,6 +26,7 @@ public class MemberServlet extends HttpServlet {
 		} else if(type.equals("login")) {
 			try {
 				member = new MemberDTO(request.getParameter("id"),request.getParameter("pwd"));
+				System.out.println(member);
 				member = LoginDAO.login(member);
 				if(member.getId()==null) {
 					error(session,response,"아이디와 패스워드를 다시한번 확인해 주세요.");
@@ -33,6 +35,7 @@ public class MemberServlet extends HttpServlet {
 					response.sendRedirect("index.jsp");
 				}
 			} catch (Exception e) {
+				e.printStackTrace();
 				error(session,response,"알 수 없는 버그가 발생하였습니다.");
 			}
 		} else if(type.equals("join")) {
