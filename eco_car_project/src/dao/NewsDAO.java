@@ -22,21 +22,22 @@ public class NewsDAO {
 		Connection con = DBUtil.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		CarDTO car = null;
 		ArrayList<NewsDTO> list = null;
-		
-		String sql = "SELECT * FROM NEWS";
-		
-		pstmt = con.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		
-		if(rs.next()){
-			NewsDTO news = new NewsDTO(
-					rs.getString("title"),
-					rs.getString("linkurl"),
-					rs.getString("des")
-					);
-			list.add(news);
+		try {
+			pstmt = con.prepareStatement("SELECT * FROM NEWS");
+			rs = pstmt.executeQuery();
+			list = new ArrayList<>();
+			while(rs.next()){
+				NewsDTO news = new NewsDTO(
+						rs.getInt("code"),
+						rs.getString("title"),
+						rs.getString("linkurl"),
+						rs.getString("des")
+						);
+				list.add(news);
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rs);
 		}
 		return list;
 	} // end of selectNews()

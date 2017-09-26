@@ -7,56 +7,47 @@ package dto;
 public class NewsDTO {
 	private int code;
 	private String title;
-	private String likeUrl;
+	private String linkUrl;
 	private String des;
 	
 	public NewsDTO() {}
-	public NewsDTO(String title, String likeUrl, String des) {
+	public NewsDTO(String title, String linkUrl, String des) {
 		super();
 		this.title = title;
-		this.likeUrl = likeUrl;
+		this.linkUrl = linkUrl;
 		this.des = des;
 	}
-	public NewsDTO(int code, String title, String likeUrl, String des) {
+	public NewsDTO(int code, String title, String linkUrl, String des) {
 		super();
 		this.code = code;
 		this.title = title;
-		this.likeUrl = likeUrl;
+		this.linkUrl = linkUrl;
 		this.des = des;
 	}
-
 	public int getCode() {
 		return code;
 	}
-
 	public void setCode(int code) {
 		this.code = code;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	public String getLikeUrl() {
-		return likeUrl;
+	public String getLinkUrl() {
+		return linkUrl;
 	}
-
-	public void setLikeUrl(String likeUrl) {
-		this.likeUrl = likeUrl;
+	public void setLinkUrl(String linkUrl) {
+		this.linkUrl = linkUrl;
 	}
-
 	public String getDes() {
 		return des;
 	}
-
 	public void setDes(String des) {
 		this.des = des;
 	}
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -64,11 +55,14 @@ public class NewsDTO {
 		builder.append(code);
 		builder.append(", title=");
 		builder.append(title);
-		builder.append(", likeUrl=");
-		builder.append(likeUrl);
+		builder.append(", linkUrl=");
+		builder.append(linkUrl);
 		builder.append(", des=");
 		builder.append(des);
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	
+	
 }
