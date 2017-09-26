@@ -40,8 +40,8 @@ public class StationDAO {
 		ResultSet rs = null;
 		List<StationDTO> list = null;
 		try {
-			pstmt = con.prepareStatement("SELECT * FROM station WHERE csnm like %?%");
-			pstmt.setString(1, name);
+			pstmt = con.prepareStatement("SELECT * FROM station WHERE addr like ?");
+			pstmt.setString(1, "%"+name+"%");
 			rs = pstmt.executeQuery();
 			list = new ArrayList<>();
 			while (rs.next()) {

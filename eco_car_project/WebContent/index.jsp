@@ -67,18 +67,7 @@
     </nav>
 
     <!-- Header -->
-    <header class="header" id="top">
-      <div class="text-vertical-center">
-        <h1>Eco-Car Station</h1>
-        <h3>Free Bootstrap Themes &amp; Templates</h3>
-        <br>
-        <span>
-            <input id="search" name="search" type="text" maxlength="255" tabindex="1" accesskey="s" style="ime-mode:active;" placeholder="충전소명 또는 지역" value=""><br>
-        	<a href="#about" class="btn btn-dark btn-lg js-scroll-trigger">Search</a>
-        </span>
-      </div>
-    </header>
-
+	<%@include file="index/header.jsp"%>
     <!-- About -->
     <%@include file="index/map.jsp"%>
     <!-- Callout -->
