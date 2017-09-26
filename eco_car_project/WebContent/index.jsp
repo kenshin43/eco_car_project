@@ -77,77 +77,8 @@
       </div>
     </aside>
 
-    <!-- Portfolio -->
-    <section id="imgView" class="portfolio">
-      <div class="container" >
-        <div class="row">
-          <div class="col-lg-10 mx-auto text-center">
-            <h2>전기자동차</h2>
-            <hr class="small">
-            <div class="row">
-   			 <c:forEach items="" var="data">
-              <div class="col-md-4">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="imgCar/${data.img}">
-                  </a>
-                </div>
-              </div>
-    		</c:forEach>
-<!--               <div class="col-md-4"> -->
-<!--                 <div class="portfolio-item"> -->
-<!--                   <a href="#"> -->
-<!--                     <img class="img-portfolio img-fluid" src="imgCar/2017TeslaModelS.png"> -->
-<!--                   </a> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--               <div class="col-md-4"> -->
-<!--                 <div class="portfolio-item"> -->
-<!--                   <a href="#"> -->
-<!--                     <img class="img-portfolio img-fluid" src="imgCar/2017ToyotaPrius.png"> -->
-<!--                   </a> -->
-<!--                 </div> -->
-<!--               </div> -->
-              <div class="w3-bar">
-  				<a href="viewcar()" class="w3-button w3-hover-blue w3-large">&laquo;</a>
-				<a href="viewcar()" class="w3-button w3-hover-blue w3-large">1</a>
-				<a href="viewcar()" class="w3-button w3-hover-blue w3-large">2</a>
-				<a href="viewcar()" class="w3-button w3-hover-blue w3-large">3</a>
-				<a href="viewcar()" class="w3-button w3-hover-blue w3-large">4</a>
-				<a href="viewcar()" class="w3-button w3-hover-blue w3-large">5</a>
-				<a href="viewcar()" class="w3-button w3-hover-blue w3-large">&raquo;</a>
-			 </div>
-<!--               <div class="col-md-4"> -->
-<!--                 <div class="portfolio-item"> -->
-<!--                   <a href="#"> -->
-<!--                     <img class="img-portfolio img-fluid" src="imgCar/2017LexusLC500h.png"> -->
-<!--                   </a> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--               <div class="col-md-6"> -->
-<!--                 <div class="portfolio-item"> -->
-<!--                   <a href="#"> -->
-<!--                     <img class="img-portfolio img-fluid" src="imgCar/2017TeslaModelS.png"> -->
-<!--                   </a> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--               <div class="col-md-6"> -->
-<!--                 <div class="portfolio-item"> -->
-<!--                   <a href="#"> -->
-<!--                     <img class="img-portfolio img-fluid" src="imgCar/2018PorschePanamera.png"> -->
-<!--                   </a> -->
-<!--                 </div> -->
-              </div>
-<!--             </div> -->
-<!--             /.row (nested) -->
-<!--             <a href="#" class="btn btn-dark">View More Items</a> -->
-<!--           </div> -->
-          <!-- /.col-lg-10 -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container -->
-    </section>
+	<!-- Car -->
+    <%@include file="index/car.jsp"%>
 
     <!-- Call to Action -->
     <aside class="call-to-action bg-primary text-white">
@@ -158,7 +89,8 @@
       </div>
     </aside>
 
-<!-- Services -->
+	<!-- News -->
+    <%@include file="index/news.jsp"%>
     <section id="services" class="services bg-primary text-white">
       <div class="container">
         <div class="row text-center">
