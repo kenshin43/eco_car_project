@@ -59,7 +59,7 @@ public class StationDAO {
 		ResultSet rs = null;
 		List<StationDTO> list = null;
 		try {
-			pstmt = con.prepareStatement("SELECT c.cpid, c.csnm, c.addr, c.lat, c.longi, c.chargetp FROM member m JOIN member_station ms ON m.id=ms.id JOIN station s ON ms.cpid=s.cpid where m.id=?");
+			pstmt = con.prepareStatement("SELECT s.cpid, s.csnm, s.addr, s.lat, s.longi, s.chargetp FROM member m JOIN member_station ms ON m.id=ms.id JOIN station s ON ms.cpid=s.cpid where m.id=?");
 			pstmt.setString(1, member.getId());
 			rs = pstmt.executeQuery();
 			list = new ArrayList<>();

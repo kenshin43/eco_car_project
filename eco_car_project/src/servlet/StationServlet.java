@@ -57,25 +57,29 @@ public class StationServlet extends HttpServlet {
 				out.println("데이터 베이스 서버에 오류가 발생하였습니다.");
 			}
 		} else if(member!=null&&type.equals("insertFavorite")) {
-			if (favoriteStation.size() <= 5) {
+			if (favoriteStation.size() < 5) {
 				try {
 					StationDAO.insertFavorite(member, Integer.valueOf(request.getParameter("cpid")));
 					favoriteStation = StationDAO.favoriteStation(member);
+					out.println("등록이 완료되었습니다.");
 				} catch (NumberFormatException | SQLException e) {
 					e.printStackTrace();
-					out.println("데이터 베이스 서버에 오류가 발생하였습니다.");
+					out.println("이전과 같은 장소를 추가하려고 하셨습니다.");
 				}
 			} else {
-				out.println("관심 주유소를 5개 등록 할 수 없습니다.");
+				out.println("관심 주유소를 5개 이상 등록 할 수 없습니다.");
 			}
 		} else if(member!=null&&type.equals("deleteFavorite")) {
 			try {
 				StationDAO.deleteFavorite(member, Integer.valueOf(request.getParameter("cpid")));
 				favoriteStation = StationDAO.favoriteStation(member);
+				out.println("관심 주유소에서 삭제 되었습니다.");
 			} catch (NumberFormatException | SQLException e) {
 				e.printStackTrace();
 				out.println("데이터 베이스 서버에 오류가 발생하였습니다.");
 			}
+		} else if(member!=null&&type.equals("favoriteStation")){
+			out.println(JSONArray.fromObject(favoriteStation));
 		} else {
 			out.println("로그인이 필요한 서비스 입니다.");
 		}

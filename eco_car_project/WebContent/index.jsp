@@ -1,37 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
-<html lang="en">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/w3.css">
-
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <head>
-
+    <title>Eco-Car Station</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Eco-Car Station</title>
-
-    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/eco.css">
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 	<script type="text/javascript">
+ 	<c:if test="${empty sessionScope.member}">
+ 	var member = null;
+ 	</c:if>
+ 	<c:if test="${not empty sessionScope.member}">
+ 	var member = "${sessionScope.member.id}";
+ 	</c:if>
+ 	</script>
+ 	
   </head>
-  <style>
-	body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-	.w3-quarter img{margin-bottom: -6px; cursor: pointer}
-	.w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
-  </style>
   <body>
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle">
@@ -42,13 +39,24 @@
         <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle">
           <i class="fa fa-times"></i>
         </a>
-        <li class="sidebar-brand">
-          <a class="js-scroll-trigger" href="#login">로그인</a>
-        </li>
-        <li class="sidebar-brand">
-          <a class="js-scroll-trigger" href="#login">회원가입</a>
-        </li>
-        <li>
+			<c:choose>
+				<c:when test="${empty sessionScope.member}">
+					
+					<li class="sidebar-brand"><a class="js-scroll-trigger"
+						onclick="document.getElementById('id01').style.display='block';">로그인</a></li>
+					<li class="sidebar-brand"><a class="js-scroll-trigger"
+						onclick="document.getElementById('id02').style.display='block';">회원가입</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="sidebar-brand"><a class="js-scroll-trigger"
+						href="member.do?type=logout">로그아웃</a></li>
+					<li class="sidebar-brand"><a class="js-scroll-trigger"
+						onclick="document.getElementById('id03').style.display='block';">회원정보수정</a></li>
+					<li class="sidebar-brand"><a class="js-scroll-trigger"
+						href="#about" onclick="favorite()">나의 즐겨찾는 주유소</a></li>
+				</c:otherwise>
+			</c:choose>
+			<li>
           <a class="js-scroll-trigger" href="#top">메인화면</a>
         </li>
         <li>
@@ -65,7 +73,9 @@
         </li>
       </ul>
     </nav>
-
+	<%@include file="index/login.jsp"%>
+	<%@include file="index/join.jsp"%>
+	<%@include file="index/change.jsp"%>
     <!-- Header -->
 	<%@include file="index/header.jsp"%>
     <!-- About -->
@@ -81,17 +91,84 @@
     <%@include file="index/car.jsp"%>
 
     <!-- Call to Action -->
-<!--     <aside class="call-to-action bg-primary text-white"> -->
-<!--       <div class="container text-center"> -->
-<!--         <h3>The buttons below are impossible to resist.</h3> -->
-<!--         <a href="#" class="btn btn-lg btn-light">Click Me!</a> -->
-<!--         <a href="#" class="btn btn-lg btn-dark">Look at Me!</a> -->
-<!--       </div> -->
-<!--     </aside> -->
+    <aside class="call-to-action bg-primary text-white">
+      <div class="container text-center">
+        <h3>The buttons below are impossible to resist.</h3>
+        <a href="#" class="btn btn-lg btn-light">Click Me!</a>
+        <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+      </div>
+    </aside>
 
 	<!-- News -->
     <%@include file="index/news.jsp"%>
- 	
+    <section id="services" class="services bg-primary text-white">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-lg-10 mx-auto">
+            <h2>Our Services</h2>
+            <hr class="small">
+            <div class="row">
+              <div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Service Name</strong>
+                  </h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <a href="#" class="btn btn-light">Learn More</a>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Service Name</strong>
+                  </h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <a href="#" class="btn btn-light">Learn More</a>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Service Name</strong>
+                  </h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <a href="#" class="btn btn-light">Learn More</a>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Service Name</strong>
+                  </h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <a href="#" class="btn btn-light">Learn More</a>
+                </div>
+              </div>
+            </div>
+            <!-- /.row (nested) -->
+          </div>
+          <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
 
 
     <!-- Footer -->
@@ -161,8 +238,12 @@
 				= httpRequest.responseText;
 			}
 		}	
-		
 	</script>
+	<script src="httpRequest.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwUF9LDOFrejQdPb7FvfCNwbW1zf8aow4&callback=initMap"
+		async="" defer=""></script>
+	<script src="ecoFunction.js"></script>
   </body>
 
 </html>
