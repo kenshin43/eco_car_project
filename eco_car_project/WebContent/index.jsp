@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/w3.css">
     <link rel="stylesheet" href="css/eco.css">
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -18,7 +17,6 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="css/stylish-portfolio.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  	<script type="text/javascript">
  	<c:if test="${empty sessionScope.member}">
  	var member = null;
@@ -144,21 +142,40 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/stylish-portfolio.js"></script>
-	<script type="text/javascript">
-		function viewCar(){
-			sendRequest("car.jsp", "1", dataView, "post");
-		}
-		function imgView(){
-			if(httpRequest.readyState == 4 && httpRequest.status == 200){
-				document.getElementById("imgView").innerHTML 
-				= httpRequest.responseText;
-			}
-		}	
-	</script>
 	<script src="httpRequest.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwUF9LDOFrejQdPb7FvfCNwbW1zf8aow4&callback=initMap"
 		async="" defer=""></script>
+	<script type="text/javascript">
+	selectNews();
+	function selectNews(){
+		sendRequest("news.do", null, viewNews, "get")
+	}
+	function viewNews(){
+		if(httpRequest.readyState==4 && httpRequest.status== 200){
+		var json = httpRequest.responseText;
+		var jsonData = JSON.parse(json);
+		console.log(jsonData);
+		var ran = [];
+		var j = 0;
+		for(j = 0; j < 5; j++){ 
+			ran[j] = Math.floor(Math.random() * 20);
+			if(ran[j] == ran[j+1]){
+				ran[j] = Math.floor(Math.random() * 20);
+			}
+		}
+		var j = 0;
+		for(j ; j < 5; j++){
+			var title = "<a href='" + jsonData[ran[j]].linkUrl + "'>" + jsonData[ran[j]].title + "</a>";
+			var des = "<a href='" + jsonData[ran[j]].linkUrl + "'>" + jsonData[ran[j]].des + "</a>";
+			console.log(title);
+			console.log(des);
+			document.getElementById("title"+j).innerHTML = title;
+			document.getElementById("des"+j).innerHTML = des;
+		}
+	}
+	}
+	</script>
 	<script src="ecoFunction.js"></script>
   </body>
 

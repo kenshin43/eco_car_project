@@ -7,7 +7,7 @@
         <br>
         <span class="green_window">
         	<input type="hidden" name="type" value="searchStation">
-            <input type="text" id="stationName" name="name" title="검색어 입력" maxlength="255" class="input_text" tabindex="1" accesskey="s" style="ime-mode:active;" autocomplete="off" onclick="document.getElementById('fbm').value=1;" value="">
+            <input type="text" id="stationName" name="name" title="검색어 입력" maxlength="255" class="input_text" tabindex="1" accesskey="s" style="ime-mode:active;width:250px;" autocomplete="off" onclick="document.getElementById('fbm').value=1;" value="">
         </span>
         <br>
         <a class="btn btn-dark btn-lg js-scroll-trigger" onclick="searchStation()" href="#about">검색</a>

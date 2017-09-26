@@ -7,12 +7,12 @@
       </div>
       <form action="member.do">
 		<input type="hidden" name="type" value="login">
-        <div class="w3-section">
+        <div class="container">
           <label><b>아이디</b></label>
-          <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="id" required>
+          <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="아이디 입력" name="id" required>
           <label><b>비밀번호</b></label>
-          <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="pwd" required>
-          <input class="w3-button w3-block w3-blue w3-section w3-padding" type="submit" value="login">
+          <input class="w3-input w3-border" type="password" placeholder="비밀번호 입력" name="pwd" required>
+          <input class="w3-button w3-block w3-blue w3-section w3-padding" type="submit" value="로그인">
           <input class="w3-check w3-margin-top" type="checkbox" checked="checked">저장하기
         </div>
       </form>
@@ -21,3 +21,4 @@
       </div>
     </div>
   </div>
+</div>

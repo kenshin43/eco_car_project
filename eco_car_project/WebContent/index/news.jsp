@@ -35,34 +35,3 @@
 	</div>
 	</div>
 	</section>
-	<script type="text/javascript">
-		selectNews();
-		function selectNews(){
-			sendRequest("news.do", null, viewNews, "get")
-		}
-		function viewNews(){
-			if(httpRequest.readyState==4 && httpRequest.status== 200){
-			var json = httpRequest.responseText;
-			var jsonData = JSON.parse(json);
-			console.log(jsonData);
-			var ran = [];
-			var j = 0;
-			for(j = 0; j < 5; j++){ 
-				ran[j] = Math.floor(Math.random() * 20);
-				if(ran[j] == ran[j+1]){
-					ran[j] = Math.floor(Math.random() * 20);
-				}
-			}
-			var j = 0;
-			for(j ; j < 5; j++){
-				var title = "<a href='" + jsonData[ran[j]].linkUrl + "'>" + jsonData[ran[j]].title + "</a>";
-				var des = "<a href='" + jsonData[ran[j]].linkUrl + "'>" + jsonData[ran[j]].des + "</a>";
-				console.log(title);
-				console.log(des);
-				document.getElementById("title"+j).innerHTML = title;
-				document.getElementById("des"+j).innerHTML = des;
-			}
-		}
-		}
-		
-	</script>
