@@ -21,7 +21,7 @@ public class CarDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		CarDTO car = null;
-		ArrayList<CarDTO> list = null;
+		List<CarDTO> list = null;
 		try {
 			pstmt = con.prepareStatement("SELECT * FROM CAR");
 			rs = pstmt.executeQuery();

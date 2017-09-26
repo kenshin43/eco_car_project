@@ -17,41 +17,32 @@
             <hr class="small">
             <div class="row">
             <div class="pagination">
- 				 <a class="w3-btn" href="#" style="text-align: justify;"> < </a>
+ 				 <a class="w3-btn" onclick="viewCarTable()"> < </a>
  			</div>
               <div class="col-md-3">
                 <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="imgCar/2017HyundaiGrandeur.png">
+                  <a href="#" id="car0">
                   </a>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="imgCar/2017TeslaModelS.png">
+                  <a href="#" id="car1">
                   </a>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="imgCar/2017ToyotaPrius.png">
+                  <a href="#" id="car2">
                   </a>
                 </div>
               </div>
               <div class="pagination">
-  				 <a class="w3-btn w3-middle" href="#">></a>
+  				 <a class="w3-btn" href="#">></a>
 			  </div>
               </div>
         </div>
       </div>
     </section>
-    
-    <script type="text/javascript" src="httpRequest.js" ></script>
-    <script type="text/javascript">
-    	
-    
-    </script>
 </body>
 </html>

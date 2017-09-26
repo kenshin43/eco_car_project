@@ -61,13 +61,13 @@
           <a class="js-scroll-trigger" href="#about">충전소정보</a>
         </li>
         <li>
-          <a class="js-scroll-trigger" href="#services">이슈보기</a>
+           <a class="js-scroll-trigger" href="#car">전기자동차</a>
         </li>
         <li>
-          <a class="js-scroll-trigger" href="#portfolio">전기자동차</a>
+          <a class="js-scroll-trigger" href="#news">이슈보기</a>
         </li>
         <li>
-          <a class="js-scroll-trigger" href="#contact" onclick=$( "#menu-close").click();>이슈보기</a>
+          <a class="js-scroll-trigger" href="#contact" onclick=$( "#menu-close").click();></a>
         </li>
       </ul>
     </nav>
@@ -147,9 +147,12 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwUF9LDOFrejQdPb7FvfCNwbW1zf8aow4&callback=initMap"
 		async="" defer=""></script>
 	<script type="text/javascript">
-	selectNews();
+	selectCar();
+	setTimeout(function() {
+		selectNews();
+		}, 90);
 	function selectNews(){
-		sendRequest("news.do", null, viewNews, "get")
+		sendRequest("news.do", null, viewNews, "POST");
 	}
 	function viewNews(){
 		if(httpRequest.readyState==4 && httpRequest.status== 200){
@@ -161,19 +164,40 @@
 		for(j = 0; j < 5; j++){ 
 			ran[j] = Math.floor(Math.random() * 20);
 			if(ran[j] == ran[j+1]){
-				ran[j] = Math.floor(Math.random() * 20);
+				ran[j] = Math.floor(Math.random() * 20);''
 			}
 		}
 		var j = 0;
 		for(j ; j < 5; j++){
-			var title = "<a href='" + jsonData[ran[j]].linkUrl + "'>" + jsonData[ran[j]].title + "</a>";
-			var des = "<a href='" + jsonData[ran[j]].linkUrl + "'>" + jsonData[ran[j]].des + "</a>";
-			console.log(title);
-			console.log(des);
+			var title = "<a class='newsTag' href='" + jsonData[ran[j]].linkurl + "'>" + jsonData[ran[j]].title + "</a>";
+			var des = "<a class='newsTag' href='" + jsonData[ran[j]].linkurl + "'>" + jsonData[ran[j]].des + "</a>";
 			document.getElementById("title"+j).innerHTML = title;
 			document.getElementById("des"+j).innerHTML = des;
+			}
 		}
 	}
+	function selectCar(){
+		sendRequest("car.do", null, viewCar, "POST");
+	}
+	var jsonCar;
+	function viewCar(){
+		if(httpRequest.readyState==4 && httpRequest.status== 200){
+			var json = httpRequest.responseText;
+			jsonCar = JSON.parse(json);
+			viewCarTable();
+		}
+	}
+	var carCnt = 0;
+	function viewCarTable(){
+		var j = 0;
+		for(j; j < 3; j++){
+		var carImg = "<img class='img-portfolio img-fluid' src='imgCar/" + jsonCar[carCnt+j].img + "'>";
+		document.getElementById("car"+j).innerHTML = carImg;
+			carCnt++;
+		}
+		if(carCnt==jsonCar.lenth){
+			carCnt = 0;
+		}
 	}
 	</script>
 	<script src="ecoFunction.js"></script>

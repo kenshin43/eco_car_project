@@ -28,7 +28,6 @@ public class NewsServlet extends HttpServlet {
 		try {
 			List<NewsDTO> list = NewsDAO.selectNews();
 			JSONArray jsonArray = JSONArray.fromObject(list);
-			System.out.println(jsonArray);
 			out.println(jsonArray);
 		} catch (SQLException e) {
 			
