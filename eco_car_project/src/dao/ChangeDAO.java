@@ -22,5 +22,5 @@ public class ChangeDAO {
 		} finally {
 			DBUtil.close(con, pstmt);
 		}
-	}
-}
+	} // end of changeMem()
+} // end of class
