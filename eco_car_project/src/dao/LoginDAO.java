@@ -24,6 +24,8 @@ public class LoginDAO {
 				} else {
 					member.setId(null);
 				}
+			} else{
+				member.setId(null);
 			}
 		}finally {
 			DBUtil.close(con, pstmt, rs);

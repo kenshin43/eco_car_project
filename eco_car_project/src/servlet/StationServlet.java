@@ -37,8 +37,7 @@ public class StationServlet extends HttpServlet {
 		String type = request.getParameter("type");
 		if(type.equals("recentStation")) {
 			try {
-				List<StationDTO> nearbyList = StationDAO.nearbyStation(Double.valueOf(request.getParameter("lat")), Double.valueOf(request.getParameter("longi")));
-				JSONArray jsonArray = JSONArray.fromObject(nearbyList);
+				JSONArray jsonArray = JSONArray.fromObject(StationDAO.nearbyStation(Double.valueOf(request.getParameter("lat")), Double.valueOf(request.getParameter("longi"))));
 				out.println(jsonArray);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -49,8 +48,7 @@ public class StationServlet extends HttpServlet {
 			}
 		} else if(type.equals("searchStation")) {
 			try {
-				List<StationDTO> searchedlist = StationDAO.searchStation(request.getParameter("name"));
-				JSONArray jsonArray = JSONArray.fromObject(searchedlist);
+				JSONArray jsonArray = JSONArray.fromObject(StationDAO.searchStation(request.getParameter("name")));
 				out.println(jsonArray);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -60,7 +58,7 @@ public class StationServlet extends HttpServlet {
 			if (favoriteStation.size() < 5) {
 				try {
 					StationDAO.insertFavorite(member, Integer.valueOf(request.getParameter("cpid")));
-					favoriteStation = StationDAO.favoriteStation(member);
+					session.setAttribute("favoriteStation", StationDAO.favoriteStation(member));
 					out.println("등록이 완료되었습니다.");
 				} catch (NumberFormatException | SQLException e) {
 					e.printStackTrace();
@@ -72,7 +70,7 @@ public class StationServlet extends HttpServlet {
 		} else if(member!=null&&type.equals("deleteFavorite")) {
 			try {
 				StationDAO.deleteFavorite(member, Integer.valueOf(request.getParameter("cpid")));
-				favoriteStation = StationDAO.favoriteStation(member);
+				session.setAttribute("favoriteStation", StationDAO.favoriteStation(member));
 				out.println("관심 주유소에서 삭제 되었습니다.");
 			} catch (NumberFormatException | SQLException e) {
 				e.printStackTrace();

@@ -30,7 +30,11 @@ public class MemberServlet extends HttpServlet {
 					error(session,response,"아이디와 패스워드를 다시한번 확인해 주세요.");
 				} else {
 					session.setAttribute("member", member);
-					response.sendRedirect("index.jsp");
+					if(member.getIsAdmin()==0) {
+						response.sendRedirect("index.jsp");
+					} else {
+						response.sendRedirect("admin.jsp");
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
