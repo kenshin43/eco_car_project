@@ -97,4 +97,56 @@ public class StationDAO {
 			DBUtil.close(con, pstmt);
 		}
 	}
+	public static boolean existStation(int cpid) throws SQLException {
+		Connection con = DBUtil.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean result = false;
+		try {
+			pstmt = con.prepareStatement("SELECT cpid FROM station WHERE cpid = ?");
+			pstmt.setInt(1, cpid);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = true;
+			}
+		}finally {
+			DBUtil.close(con, pstmt, rs);
+		}
+		return result;
+	}
+	
+	public static boolean updateStation(StationDTO station) throws SQLException {
+		Connection con = DBUtil.getConnection();
+		PreparedStatement pstmt = null;
+		boolean result = false;
+		try {
+			pstmt = con.prepareStatement("UPDATE station SET csnm=?, addr=?, lat=?, longi=?, chargetp=? WHERE cpid=?");
+			pstmt.setString(1, station.getCsnm());
+			pstmt.setString(2, station.getAddr());
+			pstmt.setDouble(3, station.getLat());
+			pstmt.setDouble(4, station.getLongi());
+			pstmt.setInt(5, station.getChargetp());
+			pstmt.setInt(6, station.getCpid());
+			result = pstmt.execute();
+		}finally {
+			DBUtil.close(con, pstmt);
+		}
+		return result;
+	}
+	public static void insertStation(StationDTO station) throws SQLException {
+		Connection con = DBUtil.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = con.prepareStatement("INSERT INTO station VALUES(?,?,?,?,?,?)");
+			pstmt.setInt(1, station.getCpid());
+			pstmt.setString(2, station.getCsnm());
+			pstmt.setString(3, station.getAddr());
+			pstmt.setDouble(4, station.getLat());
+			pstmt.setDouble(5, station.getLongi());
+			pstmt.setInt(6, station.getChargetp());
+			pstmt.execute();
+		}finally {
+			DBUtil.close(con, pstmt);
+		}
+	}
 }

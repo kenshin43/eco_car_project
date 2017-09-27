@@ -155,66 +155,6 @@
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwUF9LDOFrejQdPb7FvfCNwbW1zf8aow4&callback=initMap"
 		async="" defer=""></script>
-	<script type="text/javascript">
-	selectCar();
-	setTimeout(function() {
-		selectNews();
-		}, 150);
-	function selectNews(){
-		sendRequest("news.do", null, viewNews, "POST");
-	}
-	function viewNews(){
-		if(httpRequest.readyState==4 && httpRequest.status== 200){
-		var json = httpRequest.responseText;
-		var jsonData = JSON.parse(json);
-		var ran = [];
-		var j = 0;
-		for(j = 0; j < 5; j++){ 
-			ran[j] = Math.floor(Math.random() * 20);
-			if(ran[j] == ran[j+1]){
-				ran[j] = Math.floor(Math.random() * 20);''
-			}
-		}
-		var j = 0;
-		for(j ; j < 5; j++){
-			var title = "<a class='newsTag' href='" + jsonData[ran[j]].linkUrl + "'>" + jsonData[ran[j]].title + "</a>";
-			var des = "<a class='newsTag' href='" + jsonData[ran[j]].linkUrl + "'>" + jsonData[ran[j]].des + "</a>";
-			document.getElementById("title"+j).innerHTML = title;
-			document.getElementById("des"+j).innerHTML = des;
-			}
-		}
-	}
-	function selectCar(){
-		sendRequest("car.do", null, viewCar, "POST");
-	}
-	var jsonCar;
-	function viewCar(){
-		if(httpRequest.readyState==4 && httpRequest.status== 200){
-			var json = httpRequest.responseText;
-			jsonCar = JSON.parse(json);
-			viewCarTable();
-		}
-	}
-	var carCnt = 0;
-	function viewCarTable(num){
-		var j = 0;
-		for(j; j < 3; j++){
-			var carImg = "<img src='imgCar/" + jsonCar[carCnt+j].img + "' style='width:100%' onclick='onClick(this)'>";
-			document.getElementById("car"+j).innerHTML = carImg;
-			
-			var str = "<tr><td>연식</td><td>" + jsonCar[carCnt+j].year + "</td></tr>"
-						+ "<tr><td>브랜드</td><td>" + jsonCar[carCnt+j].brand + "</td></tr>"
-						+ "<tr><td>모델명</td><td>" + jsonCar[carCnt+j].name + "</td></tr>"
-						+ "<tr><td>가격</td><td>" + jsonCar[carCnt+j].price + "만원" + "</td></tr>"
-						+ "<tr><td>연비</td><td>" + jsonCar[carCnt+j].distance + "</td></tr>";
-			document.getElementById("info").innerHTML = str;
-				carCnt++;
-		}
-		if(carCnt==jsonCar.lenth){
-			carCnt = 0;
-		}
-	}
-	</script>
 	<script src="ecoFunction.js"></script>
   </body>
 

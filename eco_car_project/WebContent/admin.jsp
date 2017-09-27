@@ -28,19 +28,16 @@
           <i class="fa fa-times"></i>
         </a>
         <li class="sidebar-brand">
-          <a class="js-scroll-trigger" href="#login">로그인</a>
-        </li>
-        <li class="sidebar-brand">
-          <a class="js-scroll-trigger" href="#login">회원가입</a>
+          <a class="js-scroll-trigger" href="index.jsp">사이트로 이동하기</a>
         </li>
         <li>
           <a class="js-scroll-trigger" href="#top">메인화면</a>
         </li>
         <li>
-          <a class="js-scroll-trigger" href="#about">충전소정보</a>
+          <a class="js-scroll-trigger" href="#about">가입자 관리</a>
         </li>
         <li>
-          <a class="js-scroll-trigger" href="#services">이슈보기</a>
+          <a class="js-scroll-trigger" href="#callout">뉴스 최신화</a>
         </li>
       </ul>
     </nav>
@@ -61,19 +58,15 @@
         <table id="mapList" class="w3-table w3-bordered" ></table>
       </div>
     </section>
-
-	<section id="contact" class="map">
-      <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-      <br/>
-      <small>
-        <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-      </small>
-    </section>
     
     <!-- Callout -->
-    <aside class="callout">
+    <aside id="callout" class="callout">
       <div class="text-vertical-center">
-        <h1>Vertically Centered Text</h1>
+        <h1>뉴스 최신화</h1>
+        <br><br>
+        <h4>가입자를 위한 관리자의 하늘과도 같은 헌신</h4>
+        <br>
+        <button onclick="recentNews()" class="w3-button w3-blue">헌신</button>
       </div>
     </aside>
 
@@ -82,44 +75,43 @@
       <div class="container" >
         <div class="row">
           <div class="col-lg-10 mx-auto text-center">
-            <h2>전기자동차</h2>
-            <hr class="small">
+          <!-- int cpid, String csnm, String addr, double lat, double longi, int chargetp -->
+            <h2>정류장 최신화</h2>
             <div class="row">
-              <div class="col-md-4">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="imgCar/2018BenzS560e.png">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="imgCar/2017TeslaModelS.png">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="imgCar/2017ToyotaPrius.png">
-                  </a>
-                </div>
-              </div>
-              <div class="w3-bar">
-  				<a href="#" class="w3-button w3-hover-blue w3-large">&laquo;</a>
-				<a href="#" class="w3-button w3-hover-blue w3-large">1</a>
-				<a href="#" class="w3-button w3-hover-blue w3-large">2</a>
-				<a href="#" class="w3-button w3-hover-blue w3-large">3</a>
-				<a href="#" class="w3-button w3-hover-blue w3-large">4</a>
-				<a href="#" class="w3-button w3-hover-blue w3-large">5</a>
-				<a href="#" class="w3-button w3-hover-blue w3-large">&raquo;</a>
-			 </div>
+            <table class="w3-table w3-bordered">
+            <tr>
+            <td>정류장 id</td>
+            <td><input type="text" id="cpid" class="w3-input" required></td>
+            </tr>
+            <tr>
+            <td>이름</td>
+            <td><input type="text" id="csnm" class="w3-input" required></td>
+            </tr>
+            <tr>
+            <td>주소</td>
+            <td><input type="text" id="addr" class="w3-input" required></td>
+            </tr>
+            <tr>
+            <td>위도</td>
+            <td><input type="text" id="lat" class="w3-input" required></td>
+            </tr>
+            <tr>
+            <td>경도</td>
+            <td><input type="text" id="longi" class="w3-input" required></td>
+            </tr>
+            <tr>
+            <td>충전기 수</td>
+            <td><input type="text" id="chargetp" class="w3-input"required></td>
+            </tr>
+            </table>
+            <button id="stationBtn" class="w3-button w3-gray" style="margin:0 auto;">추가</button>
+           </div>
           <!-- /.col-lg-10 -->
         </div>
         <!-- /.row -->
       </div>
       <!-- /.container -->
+      </div>
     </section>
 
     <!-- Call to Action -->
@@ -207,38 +199,6 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-10 mx-auto text-center">
-            <h4>
-              <strong>Start Bootstrap</strong>
-            </h4>
-            <p>3481 Melrose Place
-              <br>Beverly Hills, CA 90210</p>
-            <ul class="list-unstyled">
-              <li>
-                <i class="fa fa-phone fa-fw"></i>
-                (123) 456-7890</li>
-              <li>
-                <i class="fa fa-envelope-o fa-fw"></i>
-                <a href="mailto:name@example.com">name@example.com</a>
-              </li>
-            </ul>
-            <br>
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-facebook fa-fw fa-3x"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-twitter fa-fw fa-3x"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-dribbble fa-fw fa-3x"></i>
-                </a>
-              </li>
-            </ul>
             <hr class="small">
             <p class="text-muted">Copyright &copy; 동승조 2017</p>
           </div>
@@ -254,14 +214,68 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="js/stylish-portfolio.js"></script>
-
-<script type="text/javascript">
-	function memberList(){
-		sendRequest("station.do", "type=insertFavorite&cpid=" + cpid, resultView, "post");
-		document.getElementById("mapList").innerHTML = "";
-	}
-	function 
-</script>
+	<script src="httpRequest.js"></script>
+	<script type="text/javascript">
+		var memberButton = true;
+		function memberList(){
+			if(memberButton){
+				sendRequest("admin.do", "type=member", memberTable, "POST");
+			} else{
+				document.getElementById("mapList").innerHTML = "";
+			}
+			memberButton=!memberButton;
+		}
+		var userTable;
+		function memberTable(){
+			if(httpRequest.readyState==4 && httpRequest.status== 200){
+				var i = 0;
+				var table = "<tr><td>아이디</td><td>이메일</td><td>관리</td><tr>";
+				var json = httpRequest.responseText;
+				userTable = JSON.parse(json);
+				for(i;i<userTable.length;i++){
+					table+= "<tr><td>"+userTable[i].id+"</td><td>"+userTable[i].email+"</td><td><button onclick='withdrawal("+i+")'>심판</button></td>";
+				}
+				document.getElementById("mapList").innerHTML = table;
+			}
+		}
+		function withdrawal(index) {
+			msg = userTable[index].id + "님을 정말로 심판하시겠습니까??";
+			if (confirm(msg) != 0) {
+				sendRequest("admin.do", "type=withdrawal&id="+userTable[index].id, withdrawalResult, "POST");
+			}
+		}
+		function withdrawalResult(){
+			if(httpRequest.readyState==4 && httpRequest.status== 200){
+				window.alert(httpRequest.responseText);
+				memberButton = true;
+				memberList();
+			}
+		}
+		function recentNews(){
+			sendRequest("parseServlet.do", null, function(){
+				if(httpRequest.readyState==4 && httpRequest.status== 200){
+					window.alert("뉴스 최신화가 완료되었습니다!!");
+				}
+			}, "POST");
+		}
+		document.getElementById("cpid").addEventListener("change", function() {
+			sendRequest("admin.do", "type=existStation&cpid="+this.value, function(){
+				if(httpRequest.readyState==4 && httpRequest.status== 200){
+					var result = httpRequest.responseText;
+					console.log(result);
+					if(result=="ture"){
+						document.getElementById("stationBtn").innerHTML = "수정"
+					} else{
+						document.getElementById("stationBtn").innerHTML = "생성"
+					}
+				}
+			}, "POST");
+			
+		});
+		document.getElementById("stationBtn").addEventListener("click", function() {
+			window.alert("얍얍");
+		});
+	</script>
   </body>
 </html>
 </c:if>

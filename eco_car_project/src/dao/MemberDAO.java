@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,5 +27,16 @@ public class MemberDAO {
 			DBUtil.close(con, pstmt, rs);
 		}
 		return list;
+	}
+	public static void withdrawal(String id) throws SQLException {
+		Connection con = DBUtil.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = con.prepareStatement("DELETE member WHERE id = ?");
+			pstmt.setString(1, id);
+			pstmt.execute();
+		}finally {
+			DBUtil.close(con, pstmt);
+		}
 	}
 }
