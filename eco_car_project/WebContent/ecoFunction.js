@@ -154,15 +154,17 @@ function viewCar(){
 function viewCarTable(){
 	var j = 0;
 	var temp = 0;
+	
 	for(j; j < 3; j++){
 		temp = carCnt+j;
 		var carImg = "<img src='imgCar/" + jsonCar[temp].img + "' style='width:100%' onclick='onClick(this)'>";
-		document.getElementById("car"+j).innerHTML = carImg;
-		var str = "<tr><td>연식</td><td>" + jsonCar[temp].year + "</td></tr>"
+		var str = "<table id='info' class='w3-table w3-display-bottom w3-bordered w3-centered w3-xlarge' style='width:90%'>" 
+					+ "<tr><td>연식</td><td>" + jsonCar[temp].year + "</td></tr>"
 					+ "<tr><td>브랜드</td><td>" + jsonCar[temp].brand + "</td></tr>"
 					+ "<tr><td>모델명</td><td>" + jsonCar[temp].name + "</td></tr>"
 					+ "<tr><td>가격</td><td>" + jsonCar[temp].price + "만원" + "</td></tr>"
-					+ "<tr><td>연비</td><td>" + jsonCar[temp].distance + "</td></tr>";
+					+ "<tr><td>연비</td><td>" + jsonCar[temp].distance + "</td></tr></table>";
+		document.getElementById("car"+j).innerHTML = carImg + str;
 		document.getElementById("info").innerHTML = str;
 			carCnt++;
 	}

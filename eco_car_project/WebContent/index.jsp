@@ -64,7 +64,7 @@
            <a class="js-scroll-trigger" href="#car">전기자동차</a>
         </li>
         <li>
-          <a class="js-scroll-trigger" href="#news">이슈보기</a>
+          <a class="js-scroll-trigger" href="#news">뉴스</a>
         </li>
         <li>
           <a class="js-scroll-trigger" href="#contact" onclick=$( "#menu-close").click();></a>
@@ -81,16 +81,15 @@
 	
     <!-- About -->
     <%@include file="index/map.jsp"%>
+    
 	<!-- Car -->
     <%@include file="index/car.jsp"%>
-	<div></div>
 	<!-- News -->
     <%@include file="index/news.jsp"%>
 	
 	<!-- Callout -->
-    <aside class="callout">
+    <aside class="callout1">
       <div class="text-vertical-center">
-        <h1>지구를 지켜주세요</h1>
       </div>
     </aside>
     
@@ -153,7 +152,7 @@
     <script src="js/stylish-portfolio.js"></script>
 	<script src="httpRequest.js"></script>
 	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwUF9LDOFrejQdPb7FvfCNwbW1zf8aow4&callback=initMap"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAleY05YLGGXlCg7fglyYbaxg1ygurk4IA&callback=initMap"
 		async="" defer=""></script>
 	<script src="ecoFunction.js"></script>
   </body>
