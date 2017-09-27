@@ -113,7 +113,7 @@ function favorite(){
 
 setTimeout(function() {
 	selectNews();
-	}, 150);
+	}, 3000);
 function selectNews(){
 	sendRequest("news.do", null, viewNews, "POST");
 }
