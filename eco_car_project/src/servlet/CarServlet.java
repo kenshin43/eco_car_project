@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.CarDAO;
 import dto.CarDTO;
-import dto.NewsDTO;
 import net.sf.json.JSONArray;
 /**
  * 
@@ -31,7 +30,7 @@ public class CarServlet extends HttpServlet{
 			JSONArray jsonArray = JSONArray.fromObject(list);
 			out.println(jsonArray);
 		} catch (SQLException e) {
-			
+			out.println("데이터 베이스 서버에 오류가 발생하였습니다.");
 			e.printStackTrace();
 		}
 	}

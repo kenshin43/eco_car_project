@@ -11,14 +11,19 @@
 			<div class="w3-justify">
 				<p id="des0"></p>
 			</div>
-			<img src="i.jpg" style="width: 100%"><br><br>
-			<h4 id="title1"></h4>
-			<div>
-				<p id="des1"></p>
-			</div>
+<!-- 			<img src="i.jpg" style="width: 100%"><br><br> -->
+<!-- 			<h4 id="title1"></h4> -->
+<!-- 			<div> -->
+<!-- 				<p id="des1"></p> -->
+<!-- 			</div> -->
 		</div>
 		<div class="w3-third">
 			<div class="w3-container eco-greenery">
+				<h2 id="title1"></h2>
+				<p class="w3-justify" id="des1"></p>
+			</div>
+			<br>
+			<div class="w3-container eco-greenery w3-justify">
 				<h2 id="title2"></h2>
 				<p class="w3-justify" id="des2"></p>
 			</div>
@@ -26,11 +31,6 @@
 			<div class="w3-container eco-greenery w3-justify">
 				<h2 id="title3"></h2>
 				<p class="w3-justify" id="des3"></p>
-			</div>
-			<br>
-			<div class="w3-container eco-greenery w3-justify">
-				<h2 id="title4"></h2>
-				<p class="w3-justify" id="des4"></p>
 			</div>
 		</div>
 	</div>

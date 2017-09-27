@@ -30,7 +30,7 @@ public class NewsServlet extends HttpServlet {
 			JSONArray jsonArray = JSONArray.fromObject(list);
 			out.println(jsonArray);
 		} catch (SQLException e) {
-			
+			out.println("데이터 베이스 서버에 오류가 발생하였습니다.");
 			e.printStackTrace();
 		}
 		

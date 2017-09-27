@@ -84,7 +84,14 @@
 
 	<!-- News -->
     <%@include file="index/news.jsp"%>
-
+	
+	<!-- Callout -->
+    <aside class="callout">
+      <div class="text-vertical-center">
+        <h1>지구를 지켜주세요</h1>
+      </div>
+    </aside>
+    
     <!-- Footer -->
     <footer>
       <div class="container">
@@ -150,7 +157,7 @@
 	selectCar();
 	setTimeout(function() {
 		selectNews();
-		}, 90);
+		}, 100);
 	function selectNews(){
 		sendRequest("news.do", null, viewNews, "POST");
 	}
@@ -169,8 +176,8 @@
 		}
 		var j = 0;
 		for(j ; j < 5; j++){
-			var title = "<a class='newsTag' href='" + jsonData[ran[j]].linkurl + "'>" + jsonData[ran[j]].title + "</a>";
-			var des = "<a class='newsTag' href='" + jsonData[ran[j]].linkurl + "'>" + jsonData[ran[j]].des + "</a>";
+			var title = "<a class='newsTag' href='" + jsonData[ran[j]].linkUrl + "'>" + jsonData[ran[j]].title + "</a>";
+			var des = "<a class='newsTag' href='" + jsonData[ran[j]].linkUrl + "'>" + jsonData[ran[j]].des + "</a>";
 			document.getElementById("title"+j).innerHTML = title;
 			document.getElementById("des"+j).innerHTML = des;
 			}
@@ -183,16 +190,21 @@
 	function viewCar(){
 		if(httpRequest.readyState==4 && httpRequest.status== 200){
 			var json = httpRequest.responseText;
+			console.log(json);
 			jsonCar = JSON.parse(json);
+			console.log(jsonCar);
 			viewCarTable();
 		}
 	}
 	var carCnt = 0;
-	function viewCarTable(){
+	function viewCarTable(num){
 		var j = 0;
-		for(j; j < 3; j++){
-		var carImg = "<img class='img-portfolio img-fluid' src='imgCar/" + jsonCar[carCnt+j].img + "'>";
+		for(j; j < 6; j++){
+		var carImg = "<img src='imgCar/" + jsonCar[carCnt+j].img + "' style='width:100%' onclick='onClick(this)'>";
 		document.getElementById("car"+j).innerHTML = carImg;
+		console.log(jsonCar[carCnt+j])
+		var str = jsonCar[carCnt+j].brand + jsonCar[carCnt+j].name;
+		document.getElementById("caption").innerHTML = str;
 			carCnt++;
 		}
 		if(carCnt==jsonCar.lenth){

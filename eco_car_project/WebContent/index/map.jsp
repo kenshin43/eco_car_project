@@ -3,7 +3,7 @@
 	
 <section id="about" class="about">
 	<div class="container text-center">
-		<h2>전기 자동차 충전소</h2>
+		<h1>전기 자동차 충전소</h1>
 		<p class="lead" id="leadMsg"></p>
 		<table id="mapList" class="w3-table w3-bordered" ></table>
 	</div>
