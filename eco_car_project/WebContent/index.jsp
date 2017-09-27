@@ -98,6 +98,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-10 mx-auto text-center">
+          	<img src="e.jpg" onclick="location.href='https://ev.or.kr/portal/main'" style="width:20%">
             <p class="text-muted">Copyright &copy; 동승조 2017</p>
           </div>
         </div>
