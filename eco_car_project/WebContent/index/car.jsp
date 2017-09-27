@@ -1,14 +1,7 @@
+<%@page import="dao.CarDAO"%>
+<%@page import="net.sf.json.JSONArray"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="dto.CarDTO"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body class="w3-light-grey w3-content" style="max-width:1600px">
-
 	<!-- Car -->
 	<section id="car">
 	<br><br>
@@ -19,7 +12,7 @@
 		<div class="w3-third w3-hover-grey" id="car1"></div>
 		<div class="w3-third w3-hover-grey" id="car2"></div>
 	</div>
-
+	<input type="hidden" id="carList" value='<%=JSONArray.fromObject(CarDAO.viewCar()).toString()%>'>
 	<!-- Pagination -->
 	<div class="w3-center w3-padding-64">
 		<div class="w3-bar">
@@ -58,5 +51,3 @@
 			document.getElementById("modal01").style.display = "block";
 		}
 	</script>
-</body>
-</html>

@@ -138,29 +138,33 @@ function viewNews(){
 		}
 	}
 }
-function selectCar(){
-	sendRequest("car.do", null, viewCar, "POST");
-}
+//selectCar();
+//function selectCar(){
+//	sendRequest("car.do", null, viewCar, "POST");
+//}
 var jsonCar;
+var carCnt = 0;
+viewCar();
 function viewCar(){
-	if(httpRequest.readyState==4 && httpRequest.status== 200){
-		var json = httpRequest.responseText;
+//	if(httpRequest.readyState==4 && httpRequest.status== 200){
+		var json = document.getElementById("carList").value;
+//		var json = httpRequest.responseText;
 		jsonCar = JSON.parse(json);
 		viewCarTable();
-	}
+//	}
 }
-var carCnt = 0;
-function viewCarTable(num){
+function viewCarTable(){
 	var j = 0;
+	var temp = 0;
 	for(j; j < 3; j++){
-		var carImg = "<img src='imgCar/" + jsonCar[carCnt+j].img + "' style='width:100%' onclick='onClick(this)'>";
+		temp = carCnt+j;
+		var carImg = "<img src='imgCar/" + jsonCar[temp].img + "' style='width:100%' onclick='onClick(this)'>";
 		document.getElementById("car"+j).innerHTML = carImg;
-		
-		var str = "<tr><td>연식</td><td>" + jsonCar[carCnt+j].year + "</td></tr>"
-					+ "<tr><td>브랜드</td><td>" + jsonCar[carCnt+j].brand + "</td></tr>"
-					+ "<tr><td>모델명</td><td>" + jsonCar[carCnt+j].name + "</td></tr>"
-					+ "<tr><td>가격</td><td>" + jsonCar[carCnt+j].price + "만원" + "</td></tr>"
-					+ "<tr><td>연비</td><td>" + jsonCar[carCnt+j].distance + "</td></tr>";
+		var str = "<tr><td>연식</td><td>" + jsonCar[temp].year + "</td></tr>"
+					+ "<tr><td>브랜드</td><td>" + jsonCar[temp].brand + "</td></tr>"
+					+ "<tr><td>모델명</td><td>" + jsonCar[temp].name + "</td></tr>"
+					+ "<tr><td>가격</td><td>" + jsonCar[temp].price + "만원" + "</td></tr>"
+					+ "<tr><td>연비</td><td>" + jsonCar[temp].distance + "</td></tr>";
 		document.getElementById("info").innerHTML = str;
 			carCnt++;
 	}
@@ -168,4 +172,3 @@ function viewCarTable(num){
 		carCnt = 0;
 	}
 }
-selectCar();
