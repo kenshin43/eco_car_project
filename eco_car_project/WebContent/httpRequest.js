@@ -1,6 +1,6 @@
-var httpRequest = null;
+
 function sendRequest(url, params, callback, method) {
-	httpRequest = new XMLHttpRequest();
+	var httpRequest = new XMLHttpRequest();
 	var httpMethod = method;	
 	if (httpMethod != 'GET' && httpMethod != 'POST') {
 		httpMethod = 'GET';
@@ -16,6 +16,8 @@ function sendRequest(url, params, callback, method) {
 	httpRequest.onreadystatechange = callback;
 	
 	httpRequest.send(httpMethod == 'POST' ? httpParams : null);
+	
+	return httpRequest;
 }
 
 

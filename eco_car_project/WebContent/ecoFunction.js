@@ -1,5 +1,15 @@
-var jsonData;
+
 var map;
+var jsonCar;
+var jsonData;
+var favoriteRequest;
+var selectRequest;
+var recentRequest;
+var carCnt = 0;
+
+mapStart();
+viewCar();
+selectNews();
 
 function mapStart() {
 	let infoWindow;
@@ -28,9 +38,9 @@ function mapStart() {
 	}
 	navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 }
-mapStart();
+
 function recent(lat, lng) {
-	sendRequest("station.do", "type=recentStation&lat=" + lat + "&longi=" + lng, view, "post");
+	recentRequest=sendRequest("station.do", "type=recentStation&lat=" + lat + "&longi=" + lng, view, "post");
 	document.getElementById("leadMsg").innerHTML = "당신 근처에 있는 당신을 위한 위한 충전소...";
 }
 
@@ -48,14 +58,14 @@ function searchStation() {
 	var name = document.getElementById("stationName").value;
 	if (name == "".split()) {
 	} else {
-		sendRequest("station.do", "type=searchStation&name=" + name, view, "post");
+		recentRequest=sendRequest("station.do", "type=searchStation&name=" + name, view, "post");
 		document.getElementById("leadMsg").innerHTML = "당신이 찾고있는 최적의 충전소...";
 	}
 }
 
 function view() {
-	if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-		jsonData = httpRequest.responseText;
+	if (recentRequest.readyState == 4 && recentRequest.status == 200) {
+		jsonData = recentRequest.responseText;
 		var html = '<tr><td>전기 주유소 명</td><td>위치</td><td>충전기 개수</td></tr>';
 		jsonData = JSON.parse(jsonData);
 		var i = 0;
@@ -70,9 +80,9 @@ function view() {
 }
 
 function favoriteView() {
-	if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+	if (favoriteRequest.readyState == 4 && favoriteRequest.status == 200) {
 		document.getElementById("leadMsg").innerHTML = "당신이 사랑하는 충전소는...";
-		jsonData = httpRequest.responseText;
+		jsonData = favoriteRequest.responseText;
 		var html = '<tr><td>전기 주유소 명</td><td>위치</td><td>충전기 개수</td></tr>';
 		jsonData = JSON.parse(jsonData);
 		var i = 0;
@@ -86,40 +96,38 @@ function favoriteView() {
 	}
 }
 
+
 function insertFavorite(i) {
 	var cpid = jsonData[i].cpid;
-	sendRequest("station.do", "type=insertFavorite&cpid=" + cpid, resultView, "post");
+	favoriteRequest = sendRequest("station.do", "type=insertFavorite&cpid=" + cpid, resultView, "post");
 }
 
 function deleteFavorite(i) {
 	var cpid = jsonData[i].cpid;
-	sendRequest("station.do", "type=deleteFavorite&cpid=" + cpid, resultView, "post");
+	favoriteRequest = sendRequest("station.do", "type=deleteFavorite&cpid=" + cpid, resultView, "post");
 }
 
 function resultView() {
-	if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-		result = httpRequest.responseText;
+	if (favoriteRequest.readyState == 4 && favoriteRequest.status == 200) {
+		result = favoriteRequest.responseText;
 		window.alert(result);
 		favorite();
 	}
 }
 function favorite(){
-	sendRequest("station.do", "type=favoriteStation", favoriteView, "post");
+	favoriteRequest = sendRequest("station.do", "type=favoriteStation", favoriteView, "post");
 }
 (function (){
 	document.getElementById('id01').style.display='none';
 	document.getElementById('id02').style.display='none';
 });
 
-setTimeout(function() {
-	selectNews();
-	}, 3000);
 function selectNews(){
-	sendRequest("news.do", null, viewNews, "POST");
+	selectRequest= sendRequest("news.do", null, viewNews, "POST");
 }
 function viewNews(){
-	if(httpRequest.readyState==4 && httpRequest.status== 200){
-	var json = httpRequest.responseText;
+	if(selectRequest.readyState==4 && selectRequest.status== 200){
+	var json = selectRequest.responseText;
 	var jsonData = JSON.parse(json);
 	var ran = [];
 	var j = 0;
@@ -138,20 +146,10 @@ function viewNews(){
 		}
 	}
 }
-//selectCar();
-//function selectCar(){
-//	sendRequest("car.do", null, viewCar, "POST");
-//}
-var jsonCar;
-var carCnt = 0;
-viewCar();
 function viewCar(){
-//	if(httpRequest.readyState==4 && httpRequest.status== 200){
 		var json = document.getElementById("carList").value;
-//		var json = httpRequest.responseText;
 		jsonCar = JSON.parse(json);
 		viewCarTable();
-//	}
 }
 function viewCarTable(){
 	var j = 0;
