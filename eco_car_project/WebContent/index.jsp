@@ -71,17 +71,19 @@
         </li>
       </ul>
     </nav>
+    
 	<%@include file="index/login.jsp"%>
 	<%@include file="index/join.jsp"%>
 	<%@include file="index/change.jsp"%>
+	
     <!-- Header -->
 	<%@include file="index/header.jsp"%>
+	
     <!-- About -->
     <%@include file="index/map.jsp"%>
-
 	<!-- Car -->
     <%@include file="index/car.jsp"%>
-
+	<div></div>
 	<!-- News -->
     <%@include file="index/news.jsp"%>
 	
@@ -157,7 +159,7 @@
 	selectCar();
 	setTimeout(function() {
 		selectNews();
-		}, 100);
+		}, 150);
 	function selectNews(){
 		sendRequest("news.do", null, viewNews, "POST");
 	}
@@ -165,7 +167,6 @@
 		if(httpRequest.readyState==4 && httpRequest.status== 200){
 		var json = httpRequest.responseText;
 		var jsonData = JSON.parse(json);
-		console.log(jsonData);
 		var ran = [];
 		var j = 0;
 		for(j = 0; j < 5; j++){ 
@@ -190,22 +191,24 @@
 	function viewCar(){
 		if(httpRequest.readyState==4 && httpRequest.status== 200){
 			var json = httpRequest.responseText;
-			console.log(json);
 			jsonCar = JSON.parse(json);
-			console.log(jsonCar);
 			viewCarTable();
 		}
 	}
 	var carCnt = 0;
 	function viewCarTable(num){
 		var j = 0;
-		for(j; j < 6; j++){
-		var carImg = "<img src='imgCar/" + jsonCar[carCnt+j].img + "' style='width:100%' onclick='onClick(this)'>";
-		document.getElementById("car"+j).innerHTML = carImg;
-		console.log(jsonCar[carCnt+j])
-		var str = jsonCar[carCnt+j].brand + jsonCar[carCnt+j].name;
-		document.getElementById("caption").innerHTML = str;
-			carCnt++;
+		for(j; j < 3; j++){
+			var carImg = "<img src='imgCar/" + jsonCar[carCnt+j].img + "' style='width:100%' onclick='onClick(this)'>";
+			document.getElementById("car"+j).innerHTML = carImg;
+			
+			var str = "<tr><td>연식</td><td>" + jsonCar[carCnt+j].year + "</td></tr>"
+						+ "<tr><td>브랜드</td><td>" + jsonCar[carCnt+j].brand + "</td></tr>"
+						+ "<tr><td>모델명</td><td>" + jsonCar[carCnt+j].name + "</td></tr>"
+						+ "<tr><td>가격</td><td>" + jsonCar[carCnt+j].price + "만원" + "</td></tr>"
+						+ "<tr><td>연비</td><td>" + jsonCar[carCnt+j].distance + "</td></tr>";
+			document.getElementById("info").innerHTML = str;
+				carCnt++;
 		}
 		if(carCnt==jsonCar.lenth){
 			carCnt = 0;

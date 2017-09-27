@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <section id="news" class="services text-black">
 	<div class="w3-light-grey w3-padding-64 w3-margin-bottom w3-center">
-		<h1 class="w3-xxlarge">전기자동차 관련 뉴스</h1>
+		<h1 class="w3-xxlarge">전기자동차 뉴스</h1>
 	</div>
-	<div class="w3-row-padding w3-content" style="max-width: 1400px">
+	<div class="w3-row-padding w3-content newfont" style="max-width: 1400px">
 		<div class="w3-twothird">
 			<img src="greencar.jpg" alt="Notebook" style="width: 100%">
 			<h2 id="title0"></h2>
