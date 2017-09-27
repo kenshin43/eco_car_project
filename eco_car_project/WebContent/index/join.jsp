@@ -13,9 +13,9 @@
 					placeholder="이메일 입력" name="email" required>
 
 				<div class="clearfix">
-					<button type="button" class="cancelbtn"
+					<button type="submit" class="w3-button w3-blue w3-right">회원가입</button>
+					<button type="button" class="w3-button w3-red w3-right"
 						onclick="document.getElementById('id02').style.display='none'">취소</button>
-					<button type="submit" class="signupbtn">회원가입</button>
 				</div>
 			</div>
 		</div>

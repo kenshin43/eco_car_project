@@ -39,6 +39,9 @@
         <li>
           <a class="js-scroll-trigger" href="#callout">뉴스 최신화</a>
         </li>
+        <li>
+          <a class="js-scroll-trigger" href="#station">정유소 관리</a>
+        </li>
       </ul>
     </nav>
 
@@ -71,16 +74,16 @@
     </aside>
 
     <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
+    <section id="station" class="portfolio">
       <div class="container" >
         <div class="row">
           <div class="col-lg-10 mx-auto text-center">
           <!-- int cpid, String csnm, String addr, double lat, double longi, int chargetp -->
-            <h2>정류장 최신화</h2>
+            <h2>정유소 관리</h2>
             <div class="row">
             <table class="w3-table w3-bordered">
             <tr>
-            <td>정류장 id</td>
+            <td>정유소 id</td>
             <td><input type="text" id="cpid" class="w3-input" required></td>
             </tr>
             <tr>
@@ -114,86 +117,6 @@
       </div>
     </section>
 
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary text-white">
-      <div class="container text-center">
-        <h3>The buttons below are impossible to resist.</h3>
-        <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-        <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
-      </div>
-    </aside>
-
-<!-- Services -->
-    <section id="services" class="services bg-primary text-white">
-      <div class="container">
-        <div class="row text-center">
-          <div class="col-lg-10 mx-auto">
-            <h2>Our Services</h2>
-            <hr class="small">
-            <div class="row">
-              <div class="col-md-3 col-sm-6">
-                <div class="service-item">
-                  <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                  </span>
-                  <h4>
-                    <strong>Service Name</strong>
-                  </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="service-item">
-                  <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                  </span>
-                  <h4>
-                    <strong>Service Name</strong>
-                  </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="service-item">
-                  <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                  </span>
-                  <h4>
-                    <strong>Service Name</strong>
-                  </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="service-item">
-                  <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                  </span>
-                  <h4>
-                    <strong>Service Name</strong>
-                  </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
-                </div>
-              </div>
-            </div>
-            <!-- /.row (nested) -->
-          </div>
-          <!-- /.col-lg-10 -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container -->
-    </section>
-
-
     <!-- Footer -->
     <footer>
       <div class="container">
@@ -216,10 +139,15 @@
     <script src="js/stylish-portfolio.js"></script>
 	<script src="httpRequest.js"></script>
 	<script type="text/javascript">
+		var memberTableRequest;
+		var withdrawalRequest;
+		var recentNewsRequest;
+		var stationRequest;
 		var memberButton = true;
+		var result;
 		function memberList(){
 			if(memberButton){
-				sendRequest("admin.do", "type=member", memberTable, "POST");
+				memberTableRequest= sendRequest("admin.do", "type=member", memberTable, "POST");
 			} else{
 				document.getElementById("mapList").innerHTML = "";
 			}
@@ -227,10 +155,10 @@
 		}
 		var userTable;
 		function memberTable(){
-			if(httpRequest.readyState==4 && httpRequest.status== 200){
+			if(memberTableRequest.readyState==4 && memberTableRequest.status== 200){
 				var i = 0;
 				var table = "<tr><td>아이디</td><td>이메일</td><td>관리</td><tr>";
-				var json = httpRequest.responseText;
+				var json = memberTableRequest.responseText;
 				userTable = JSON.parse(json);
 				for(i;i<userTable.length;i++){
 					table+= "<tr><td>"+userTable[i].id+"</td><td>"+userTable[i].email+"</td><td><button onclick='withdrawal("+i+")'>심판</button></td>";
@@ -241,29 +169,29 @@
 		function withdrawal(index) {
 			msg = userTable[index].id + "님을 정말로 심판하시겠습니까??";
 			if (confirm(msg) != 0) {
-				sendRequest("admin.do", "type=withdrawal&id="+userTable[index].id, withdrawalResult, "POST");
+				withdrawalRequest = sendRequest("admin.do", "type=withdrawal&id="+userTable[index].id, withdrawalResult, "POST");
 			}
 		}
 		function withdrawalResult(){
-			if(httpRequest.readyState==4 && httpRequest.status== 200){
-				window.alert(httpRequest.responseText);
+			if(withdrawalRequest.readyState==4 && withdrawalRequest.status== 200){
+				window.alert(withdrawalRequest.responseText);
 				memberButton = true;
 				memberList();
 			}
 		}
 		function recentNews(){
-			sendRequest("parseServlet.do", null, function(){
-				if(httpRequest.readyState==4 && httpRequest.status== 200){
+			recentNewsRequest = sendRequest("parseServlet.do", null, function(){
+				if(recentNewsRequest.readyState==4 && recentNewsRequest.status== 200){
 					window.alert("뉴스 최신화가 완료되었습니다!!");
 				}
 			}, "POST");
 		}
 		document.getElementById("cpid").addEventListener("change", function() {
-			sendRequest("admin.do", "type=existStation&cpid="+this.value, function(){
-				if(httpRequest.readyState==4 && httpRequest.status== 200){
-					var result = httpRequest.responseText;
+			stationRequest = sendRequest("admin.do", "type=existStation&cpid="+this.value, function(){
+				if(stationRequest.readyState==4 && stationRequest.status== 200){
+					result = stationRequest.responseText;
 					console.log(result);
-					if(result=="ture"){
+					if(result=="true"){
 						document.getElementById("stationBtn").innerHTML = "수정"
 					} else{
 						document.getElementById("stationBtn").innerHTML = "생성"
@@ -272,8 +200,25 @@
 			}, "POST");
 			
 		});
+		
 		document.getElementById("stationBtn").addEventListener("click", function() {
-			window.alert("얍얍");
+			window.alert('동작!');
+			var cpid = document.getElementById("cpid").value;
+			var csnm = document.getElementById("csnm").value;
+			var addr = document.getElementById("addr").value;
+			var lat = document.getElementById("lat").value;
+			var longi = document.getElementById("longi").value;
+			var chargetp = document.getElementById("chargetp").value;
+			if(cpid==null&&csnm==null&&addr==null&&lat==null&&longi==null&&chargetp==null){
+				window.alert('공백이 있어서는 안됩니다.');
+			}else{
+				stationRequest = sendRequest("admin.do", "type="+(result=="true"?"updateStation":"insertStation")+"&cpid="+cpid+"&csnm="+csnm+"&addr="+addr+"&lat="+lat+"&longi="+longi+"&chargetp="+chargetp, 
+						function(){
+							if(stationRequest.readyState==4 && stationRequest.status== 200){
+								window.alert(stationRequest.responseText);
+							}
+				}, "POST");
+			}
 		});
 	</script>
   </body>

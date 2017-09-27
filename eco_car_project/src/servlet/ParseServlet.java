@@ -34,13 +34,14 @@ public class ParseServlet extends HttpServlet {
 		try {
 			jArray = News.insertNews();
 			for (int i = 0; i < jArray.size(); i++) {
-			jsonObject = (JSONObject) jsonParser.parse(jArray.get(i).toString());
-			String title = (String) jsonObject.get("title");
-			String link = (String) jsonObject.get("link");
-			String des = (String) jsonObject.get("description");
-			ParseDAO.insertNews(title, link, des);
+				jsonObject = (JSONObject) jsonParser.parse(jArray.get(i).toString());
+				String title = (String) jsonObject.get("title");
+				String link = (String) jsonObject.get("link");
+				String des = (String) jsonObject.get("description");
+				ParseDAO.insertNews(title, link, des);
 			}
 		} catch (Exception e) {
+			response.getWriter().println("에러가 발생하였습니다.");
 			e.printStackTrace();
 		}
 	}

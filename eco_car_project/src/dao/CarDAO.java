@@ -10,11 +10,6 @@ import java.util.List;
 import dto.CarDTO;
 import util.DBUtil;
 
-/**
- * 
- * @author DG
- *
- */
 public class CarDAO {
 	public static List<CarDTO> viewCar() throws SQLException {
 		Connection con = DBUtil.getConnection();
@@ -42,5 +37,5 @@ public class CarDAO {
 			DBUtil.close(con, pstmt, rs);
 		}
 		return list;
-	} // end of viewCar()
-} // end of class
+	}
+}

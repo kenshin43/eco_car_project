@@ -50,14 +50,15 @@ public class AdminServlet extends HttpServlet {
 			}
 		} else if(type.equals("updateStation")) {
 			try {
-				out.println(StationDAO.updateStation(new StationDTO(
+				StationDAO.updateStation(new StationDTO(
 							Integer.valueOf(request.getParameter("cpid")),
 							request.getParameter("csnm"),
 							request.getParameter("addr"),
 							Double.valueOf(request.getParameter("lat")),
 							Double.valueOf(request.getParameter("longi")),
 							Integer.valueOf(request.getParameter("chargetp"))
-						)));
+						));
+				out.println("수정에 성공하였습니다.");
 			} catch (NumberFormatException | SQLException e) {
 				out.print(e.getMessage()+"에러가 발생하였습니다. 서버 관리자에게 문의하세요.");
 				e.printStackTrace();
@@ -72,7 +73,7 @@ public class AdminServlet extends HttpServlet {
 							Double.valueOf(request.getParameter("longi")),
 							Integer.valueOf(request.getParameter("chargetp"))
 						));
-				out.println(true);
+				out.println("목록에 추가되었습니다.");
 			} catch (NumberFormatException | SQLException e) {
 				out.print(e.getMessage()+"에러가 발생하였습니다. 서버 관리자에게 문의하세요.");
 				e.printStackTrace();

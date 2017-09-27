@@ -11,13 +11,8 @@ import java.util.List;
 import dto.CarDTO;
 import dto.NewsDTO;
 import util.DBUtil;
-/**
- * 
- * @author DG
- *
- */
+
 public class NewsDAO {
-	
 	public static List<NewsDTO> selectNews() throws SQLException {
 		Connection con = DBUtil.getConnection();
 		PreparedStatement pstmt = null;
@@ -40,5 +35,5 @@ public class NewsDAO {
 			DBUtil.close(con, pstmt, rs);
 		}
 		return list;
-	} // end of selectNews()
-} // end of class()
+	}
+}
