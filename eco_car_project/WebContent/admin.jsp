@@ -79,11 +79,11 @@
         <div class="row">
           <div class="col-lg-10 mx-auto text-center">
           <!-- int cpid, String csnm, String addr, double lat, double longi, int chargetp -->
-            <h2>정유소 관리</h2>
+            <h2>충전소 관리</h2>
             <div class="row">
             <table class="w3-table w3-bordered">
             <tr>
-            <td>정유소 id</td>
+            <td>충전소 id</td>
             <td><input type="text" id="cpid" class="w3-input" required></td>
             </tr>
             <tr>
